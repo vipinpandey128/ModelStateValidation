@@ -1,0 +1,43 @@
+﻿<br /><br />
+Name - <input type="text" id="name" />
+Age - <input type="text" id="age" />
+<input type="button" value="Save" onclick="SaveRecords()"/>
+
+<script>
+    function SaveRecords() {
+        var name = document.getElementById("name").value;
+        var age = document.getElementById("age").value;
+
+        var listData = [];
+
+        var formPersonAddress = {
+            Address: "India"
+        };
+
+        listData.push(formPersonAddress);
+
+
+        var formData = {
+            Id: "1",
+            Name: name,
+            Age: age,
+            Country: "IND",
+            Addresses: listData
+        };
+
+
+        $.ajax({
+            type: "POST",
+            url:'@Url.Action("Create")',
+            data: formData,
+            success: function (r) {
+                alert("Success");
+            },
+            error: function (r) {
+                alert("Error");
+            }
+        });
+
+    }
+</script>
+

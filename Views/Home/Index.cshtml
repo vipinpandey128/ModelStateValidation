@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div>
+    Calling Ajax Method
+    <button type="button" id="btn" onclick="Add()">Click</button>
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+
+<script>
+
+    function Add() {
+        var listData = [];
+
+        var formPersonAddress = {
+            Address: "India"
+        };
+
+        listData.push(formPersonAddress);
+
+
+        var formData = {
+            Id: "1",
+            Name: "Code Play",
+            Age: 18,
+            Country: "IND",
+            Addresses: listData
+        };
+
+
+        $.ajax({
+            type: "POST",
+            url:'@Url.Action("SaveData")',
+            data: formData,
+            success: function () {
+                alert("Success");
+            },
+            error: function () {
+                alert("Error");
+            }
+        });
+    }
+
+</script>
